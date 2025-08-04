@@ -1,0 +1,30 @@
+
+#include <stdio.h>
+
+int main() {
+    float gujarati, hindi, english, sanskrit, maths;
+    float total, percentage;
+
+    printf("Enter marks for Gujarati: ");
+    scanf("%f", &gujarati);
+
+    printf("Enter marks for Hindi: ");
+    scanf("%f", &hindi);
+
+    printf("Enter marks for English: ");
+    scanf("%f", &english);
+
+    printf("Enter marks for Sanskrit: ");
+    scanf("%f", &sanskrit);
+
+    printf("Enter marks for Maths: ");
+    scanf("%f", &maths);
+
+    total = gujarati + hindi + english + sanskrit + maths;
+    percentage = (total / 500) * 100;  // Assuming each subject is out of 100
+
+    printf("\nTotal Marks = %.2f\n", total);
+    printf("Percentage  = %.2f%%\n", percentage);
+
+    return 0;
+}
