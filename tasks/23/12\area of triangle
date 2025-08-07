@@ -1,0 +1,48 @@
+#include <stdio.h>
+#define PI 3.14159
+
+int main() {
+    int choice;
+    float base, height, length, breadth, radius, area;
+
+    printf("===== Area Calculator =====\n");
+    printf("1. Area of Triangle\n");
+    printf("2. Area of Rectangle\n");
+    printf("3. Area of Circle\n");
+    printf("Enter your choice (1/2/3): ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        // Triangle
+        printf("\n-- Triangle --\n");
+        printf("Enter base: ");
+        scanf("%f", &base);
+        printf("Enter height: ");
+        scanf("%f", &height);
+        area = 0.5 * base * height;
+        printf("Area of Triangle = %.2f\n", area);
+    } 
+    else if (choice == 2) {
+        // Rectangle
+        printf("\n-- Rectangle --\n");
+        printf("Enter length: ");
+        scanf("%f", &length);
+        printf("Enter breadth: ");
+        scanf("%f", &breadth);
+        area = length * breadth;
+        printf("Area of Rectangle = %.2f\n", area);
+    } 
+    else if (choice == 3) {
+        // Circle
+        printf("\n-- Circle --\n");
+        printf("Enter radius: ");
+        scanf("%f", &radius);
+        area = PI * radius * radius;
+        printf("Area of Circle = %.2f\n", area);
+    } 
+    else {
+        printf("Invalid Choice. Please enter 1, 2 or 3.\n");
+    }
+
+    return 0;
+}
