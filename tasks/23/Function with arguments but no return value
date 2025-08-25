@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+void add(int x, int y) {
+    printf("Sum = %d\n", x + y);
+}
+
+int main() {
+    add(10, 20);  // Passing arguments
+    return 0;
+}
