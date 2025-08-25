@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <conio.h>
+
+int main() {
+    float amount, salary;
+
+    printf("Enter amount: ");
+    scanf("%f", &amount);
+
+    salary = amount * 12;
+
+    printf("Yearly salary: %.2f\n", salary);
+
+    getch();
+    return 0;
+}
