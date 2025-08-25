@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main() {
+    int marks[5], i, total = 0, rollno;
+    float percentage, average;
+    char grade;
+    char name[50];   // for student name
+
+    // Input name and roll number
+    printf("Enter Student Name: ");
+    scanf(" %[^\n]", name);  // reads full name (including spaces)
+
+    printf("Enter Roll Number: ");
+    scanf("%d", &rollno);
+
+    // Input marks
+    printf("Enter marks of 5 subjects:\n");
+    for(i = 0; i < 5; i++) {
+        printf("Subject %d: ", i+1);
+        scanf("%d", &marks[i]);
+        total += marks[i];
+    }
+
+    // Calculate percentage and average
+    average = total / 5.0;     // average marks
+    percentage = average;      // percentage is same as average here
+
+    // Assign grade
+    if(percentage >= 90)
+        grade = 'A';
+    else if(percentage >= 75)
+        grade = 'B';
+    else if(percentage >= 50)
+        grade = 'C';
+    else if(percentage >= 35)
+        grade = 'D';
+    else
+        grade = 'F';
+
+    // Display report
+    printf("\n------ Student Grade Report ------\n");
+    printf("Name       : %s\n", name);
+    printf("Roll Number: %d\n", rollno);
+    for(i = 0; i < 5; i++) {
+        printf("Subject %d Marks: %d\n", i+1, marks[i]);
+    }
+    printf("Total Marks  = %d\n", total);
+    printf("Average Marks= %.2f\n", average);
+    printf("Percentage   = %.2f%%\n", percentage);
+    printf("Grade        = %c\n", grade);
+    printf("---------------------------------\n");
+
+    return 0;
+}
