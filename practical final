@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <string.h>
+
+#define SUBJECTS 5
+
+// Student structure
+struct Student {
+    char  name[50];        // stores student's name (up to 49 chars + '\0')
+    int   roll;            // roll number
+    float marks[SUBJECTS]; // marks in SUBJECTS subjects (contiguous array)
+    float average;         // computed average
+    char  grade;           // assigned grade
+};
+
+/* Helper: remove trailing newline from fgets */
+void strip_newline(char *s) {
+    size_t len = strlen(s);
+    if (len > 0 && s[len-1] == '\n') s[len-1] = '\0';
+}
+
+/* Calculate average of an array of floats */
+float calcAverage(const float marks[], int n) {
+    float sum = 0.0f;
+    for (int i = 0; i < n; ++i) sum += marks[i];
+    return sum / n;
+}
+
+/* Assign grade based on average */
+char calcGrade(float avg) {
+    if (avg >= 90.0f) return 'A';
+    else if (avg >= 75.0f) return 'B';
+    else if (avg >= 60.0f) return 'C';
+    else if (avg >= 40.0f) return 'D';
+    else return 'F';
+}
+
+/* Display a neat report (pass pointer to avoid copying struct) */
+void displayReport(const struct Student *s) {
+    printf("\n----- Student Report -----\n");
+    printf("Name    : %s\n", s->name);
+    printf("Roll No : %d\n", s->roll);
+    printf("Marks   : ");
+    for (int i = 0; i < SUBJECTS; ++i) printf("%.2f ", s->marks[i]);
+    printf("\nAverage : %.2f\n", s->average);
+    printf("Grade   : %c\n", s->grade);
+}
+
+int main(void) {
+    struct Student s;
+
+    printf("Enter student name: ");
+    /* use fgets to accept spaces in name */
+    fgets(s.name, sizeof(s.name), stdin);
+    strip_newline(s.name);
+
+    printf("Enter roll no: ");
+    if (scanf("%d", &s.roll) != 1) {
+        printf("Invalid roll number input.\n");
+        return 1;
+    }
+
+    /* Read marks. Validate 0-100 range; if invalid, ask again */
+    for (int i = 0; i < SUBJECTS; ++i) {
+        float m;
+        do {
+            printf("Enter marks in subject %d (0-100): ", i+1);
+            if (scanf("%f", &m) != 1) {
+                /* clear bad input */
+                int ch;
+                while ((ch = getchar()) != '\n' && ch != EOF) ;
+                m = -1.0f; /* force repeat */
+                printf("Invalid input. Please enter a number.\n");
+                continue;
+            }
+            if (m < 0.0f || m > 100.0f) {
+                printf("Marks must be between 0 and 100. Try again.\n");
+            } else {
+                s.marks[i] = m;
+                break;
+            }
+        } while (1);
+    }
+
+    /* compute average and grade */
+    s.average = calcAverage(s.marks, SUBJECTS);
+    s.grade = calcGrade(s.average);
+
+    displayReport(&s);
+
+    return 0;
+}
