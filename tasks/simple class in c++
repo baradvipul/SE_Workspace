@@ -27,7 +27,7 @@ int main() {
     Student s1;
 
     // Set data using setData() method
-    s1.setData("Alice", 92);
+    s1.setData("vipul", 01);
 
     // Display the data
     s1.displayData();
