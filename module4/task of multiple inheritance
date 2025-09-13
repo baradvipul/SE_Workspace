@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int a;
+    void getA() {
+        cout << "Enter value for A: ";
+        cin >> a;
+    }
+};
+
+class B {
+public:
+    int b;
+    void getB() {
+        cout << "Enter value for B: ";
+        cin >> b;
+    }
+};
+
+class C : public A, public B {
+public:
+    void display() {
+        cout << "Value of A: " << a << endl;
+        cout << "Value of B: " << b << endl;
+        cout << "Sum: " << (a + b) << endl;
+    }
+};
+
+int main() {
+    C obj;
+    obj.getA();
+    obj.getB();
+    obj.display();
+    return 0;
+}
